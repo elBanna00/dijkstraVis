@@ -1,8 +1,13 @@
 import React from "react";
 import "./App.css";
+import PathfindingVisualizer from "./components/Visualizer/Visualizer";
 
 function App() {
-  return <div>Hello react!</div>;
+  return (
+    <div className="App">
+      <PathfindingVisualizer></PathfindingVisualizer>
+    </div>
+  );
 }
 
 export default App;
