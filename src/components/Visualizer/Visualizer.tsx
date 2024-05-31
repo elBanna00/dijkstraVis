@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Node from "../Node/Node";
 import {
   dijkstra,
@@ -15,6 +15,7 @@ const FINISH_NODE_COL = 35;
 const Visualizer: React.FC = () => {
   const [grid, setGrid] = useState<NodeType[][]>([]);
   const [mouseIsPressed, setMouseIsPressed] = useState<boolean>(false);
+  const gridRef = useRef(grid);
 
   useEffect(() => {
     const initialGrid = getInitialGrid();
@@ -24,7 +25,28 @@ const Visualizer: React.FC = () => {
   const resetGrid = () => {
     const initialGrid = getInitialGrid();
     setGrid(initialGrid);
+    gridRef.current = initialGrid;
+
+    // Reset the class of each node in the DOM, except for start and finish nodes
+    for (let row = 0; row < initialGrid.length; row++) {
+      for (let col = 0; col < initialGrid[0].length; col++) {
+        const node = initialGrid[row][col];
+        const nodeElement = document.getElementById(
+          `node-${node.row}-${node.col}`
+        );
+        if (nodeElement) {
+          if (node.isStart) {
+            nodeElement.className = "node node-start";
+          } else if (node.isFinish) {
+            nodeElement.className = "node node-finish";
+          } else {
+            nodeElement.className = "node";
+          }
+        }
+      }
+    }
   };
+
   const handleMouseDown = (row: number, col: number) => {
     const newGrid = getNewGridWithWallToggled(grid, row, col);
     setGrid(newGrid);
@@ -80,6 +102,7 @@ const Visualizer: React.FC = () => {
 
   return (
     <div className="container">
+      <header>Dijkstra Visualizer</header>
       <div className="grid">
         {grid.map((row, rowIdx) => (
           <div key={rowIdx}>
