@@ -7,6 +7,58 @@
 }
 
 /* Style the button */
+header {
+  color: rgb(52, 66, 141);
+  text-align: center;
+  font-size: 3vw; /* Responsive font size */
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 13vh; /* Responsive margin */
+  padding-top: 2vh; /* Responsive padding */
+}
 button {
-  margin-top: 20px; /* Space between the grid and the button */
+  background: linear-gradient(
+    90deg,
+    rgb(58, 36, 37) 0%,
+    rgb(153, 22, 61) 100%
+  ); /* Soft pink gradient */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px; /* Optional: Adds space between buttons */
+}
+
+/* Hover state */
+button:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(132, 131, 134) 0%,
+    rgb(122, 115, 184) 100%
+  ); /* Reverse gradient on hover */
+  color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Active state */
+button:active {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 160, 170, 1) 0%,
+    rgba(255, 170, 180, 1) 100%
+  ); /* Slightly darker gradient */
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

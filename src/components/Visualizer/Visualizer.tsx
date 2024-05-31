@@ -21,6 +21,10 @@ const Visualizer: React.FC = () => {
     setGrid(initialGrid);
   }, []);
 
+  const resetGrid = () => {
+    const initialGrid = getInitialGrid();
+    setGrid(initialGrid);
+  };
   const handleMouseDown = (row: number, col: number) => {
     const newGrid = getNewGridWithWallToggled(grid, row, col);
     setGrid(newGrid);
@@ -102,6 +106,7 @@ const Visualizer: React.FC = () => {
       <button onClick={visualizeDijkstra}>
         Visualize Dijkstra's Algorithm
       </button>
+      <button onClick={resetGrid}>Reset Grid</button>
     </div>
   );
 };
